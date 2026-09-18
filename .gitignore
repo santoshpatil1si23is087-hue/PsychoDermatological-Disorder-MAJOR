@@ -1,0 +1,24 @@
+# Byte-compiled 
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Large datasets and media 
+dataset/
+*.zip
+
+# Database
+instance/
+*.sqlite3
+
+# Models (Optional: Comment out if you want to push models to GitHub)
+# models/*.keras
+# models/*.pkl
+
+Demo.mp4
+models/best_model.keras
+models/best_model_finetuned.keras

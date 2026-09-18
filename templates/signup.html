@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Psychodermatology Detection System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="auth-container">
+        
+        <!-- Left Side: Info Panel -->
+        <div class="auth-panel-info">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            
+            <div class="info-content">
+                <i class="bi bi-heart-pulse info-icon"></i>
+                <h3 class="info-title">Join Us Today</h3>
+                <p class="info-desc">Create an account to access AI-powered psychodermatology analysis</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Instant Analysis</h4>
+                            <p>Get skin & mental health assessment in seconds</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Advanced AI Models</h4>
+                            <p>Powered by deep learning algorithms</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Comprehensive Reports</h4>
+                            <p>Detailed analysis with visual insights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Sign Up Form -->
+        <div class="auth-form-side">
+            <div class="mb-8">
+                <a href="/" class="brand-header">
+                    <i class="bi bi-heart-pulse"></i> Psychodermatology System
+                </a>
+            </div>
+
+            <h2 class="auth-title">Create Account</h2>
+            <p class="auth-subtitle">Sign up to start analyzing with AI</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {% if category == 'success' %}alert-success{% else %}alert-error{% endif %}">
+                            <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-circle-fill{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/signup" method="post" id="signupForm">
+                <!-- Name Fields -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-person-fill"></i>
+                            <input type="text" name="first_name" id="firstName" required class="form-input" placeholder="First name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-person-fill"></i>
+                            <input type="text" name="last_name" id="lastName" required class="form-input" placeholder="Last name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-envelope-fill"></i>
+                        <input type="email" name="email" id="email" required class="form-input" placeholder="Enter your email">
+                    </div>
+                    <span class="input-hint">We'll never share your email with anyone else</span>
+                </div>
+
+                <!-- Username -->
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-at"></i>
+                        <input type="text" name="username" id="username" required minlength="4" class="form-input" placeholder="Choose a username">
+                    </div>
+                    <span class="input-hint">At least 4 characters long</span>
+                </div>
+
+                <!-- Password Fields -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-lock-fill"></i>
+                            <input type="password" name="password" id="password" required minlength="6" class="form-input" placeholder="Create password">
+                        </div>
+                        <span class="input-hint">At least 6 characters</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="bi bi-lock-fill"></i>
+                            <input type="password" name="confirm_password" id="confirmPassword" required class="form-input" placeholder="Confirm password">
+                        </div>
+                        <span id="passwordMatch" class="input-status"></span>
+                    </div>
+                </div>
+
+                <!-- Age -->
+                <div class="form-group">
+                    <label class="form-label">Age Range</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-calendar-event"></i>
+                        <select name="age" id="age" required class="form-input">
+                            <option value="">Select Age Range</option>
+                            <option value="18-25">18-25</option>
+                            <option value="26-35">26-35</option>
+                            <option value="36-45">36-45</option>
+                            <option value="46-55">46-55</option>
+                            <option value="56-65">56-65</option>
+                            <option value="65+">65+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Purpose -->
+                <div class="form-group">
+                    <label class="form-label">Primary Purpose</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-bullseye"></i>
+                        <select name="purpose" id="purpose" required class="form-input">
+                            <option value="">Select Purpose</option>
+                            <option value="personal">Personal Health Monitoring</option>
+                            <option value="research">Research/Educational</option>
+                            <option value="healthcare">Healthcare Professional</option>
+                            <option value="student">Medical Student</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Checkboxes -->
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agree_terms" id="agreeTerms" required class="checkbox-input">
+                        <span>
+                            I agree to the <a href="#" onclick="openModal('termsModal')">Terms of Service</a> and <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
+                        </span>
+                    </label>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="medical_disclaimer" id="medicalDisclaimer" required class="checkbox-input">
+                        <span>
+                            I understand this tool is for educational purposes only and does not replace professional medical diagnosis
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" id="signupBtn" class="btn-submit">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>
+                    Already have an account? 
+                    <a href="/login">Log In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Terms of Service</h3>
+                <button onclick="closeModal('termsModal')" class="modal-close"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Educational Purpose</h6>
+                <p>Psychodermatology Detection System is designed for educational and research purposes only. It is not intended for medical diagnosis or treatment.</p>
+                
+                <h6>2. No Medical Advice</h6>
+                <p>This application does not provide medical advice. Always consult qualified healthcare professionals for medical concerns.</p>
+                
+                <h6>3. Data Usage</h6>
+                <p>Uploaded images may be used for improving the AI model. No personal identifying information is stored with images.</p>
+                
+                <h6>4. Accuracy Disclaimer</h6>
+                <p>While we strive for accuracy, the AI model is not 100% accurate and should not be relied upon for medical decisions.</p>
+                
+                <h6>5. User Responsibility</h6>
+                <p>Users are responsible for using this tool appropriately and seeking professional medical care when needed.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('termsModal')" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Privacy Policy</h3>
+                <button onclick="closeModal('privacyModal')" class="modal-close"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="modal-body">
+                <h6>Information We Collect</h6>
+                <p>We collect basic account information (name, email, username) and uploaded images for analysis.</p>
+                
+                <h6>How We Use Information</h6>
+                <p>Your information is used to provide the skin and mental health analysis service and improve our AI models.</p>
+                
+                <h6>Data Security</h6>
+                <p>We implement security measures to protect your personal information and uploaded images.</p>
+                
+                <h6>Data Retention</h6>
+                <p>Images are automatically deleted after analysis. Account information is retained until account deletion.</p>
+                
+                <h6>Third Party Sharing</h6>
+                <p>We do not share personal information with third parties except as required by law.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('privacyModal')" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            event.preventDefault();
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Password Match Validation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            const matchDiv = document.getElementById('passwordMatch');
+            
+            if (confirmPassword === '') {
+                matchDiv.textContent = '';
+            } else if (password === confirmPassword) {
+                matchDiv.textContent = '✓ Passwords match';
+                matchDiv.className = 'input-status text-success';
+            } else {
+                matchDiv.textContent = '✗ Passwords do not match';
+                matchDiv.className = 'input-status text-error';
+            }
+        });
+
+        // Form Submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match!');
+                return false;
+            }
+
+            const submitBtn = document.getElementById('signupBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div> Creating Account...';
+        });
+
+        // Reset on Load
+        window.addEventListener('load', function() {
+            const form = document.getElementById('signupForm');
+            form.reset();
+            const submitBtn = document.getElementById('signupBtn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Create Account';
+        });
+    </script>
+</body>
+</html>

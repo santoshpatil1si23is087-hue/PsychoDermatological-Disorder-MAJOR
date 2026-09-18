@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Psychodermatology Detection System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        
+        <!-- Left Side: Login Form -->
+        <div class="auth-form-side">
+            <div class="mb-8">
+                <a href="/" class="brand-header">
+                    <i class="bi bi-heart-pulse"></i> Psychodermatology System
+                </a>
+            </div>
+
+            <h2 class="auth-title">Welcome Back!</h2>
+            <p class="auth-subtitle">Log in to access AI-powered skin & mental health analysis</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {% if category == 'success' %}alert-success{% else %}alert-error{% endif %}">
+                            <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-circle-fill{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="post" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-person-fill"></i>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            id="username"
+                            required
+                            class="form-input"
+                            placeholder="Enter your username"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-lock-fill"></i>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            required
+                            class="form-input"
+                            placeholder="Enter your password"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <label class="checkbox-label" for="rememberMe">
+                        <input type="checkbox" name="remember" id="rememberMe" class="checkbox-input">
+                        <span>Remember me</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Log In
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>
+                    Don't have an account? 
+                    <a href="/signup">Sign Up</a>
+                </p>
+            </div>
+
+            <!-- Medical Disclaimer -->
+            <div class="medical-disclaimer">
+                <h6>
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    Medical Disclaimer
+                </h6>
+                <p>
+                    This application is for educational and research purposes only. 
+                    It should not be used as a substitute for professional medical diagnosis. 
+                    Always consult qualified healthcare professionals for medical concerns.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Info Panel -->
+        <div class="auth-panel-info">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            
+            <div class="info-content">
+                <i class="bi bi-heart-pulse info-icon"></i>
+                <h3 class="info-title">Psychodermatology Analysis</h3>
+                <p class="info-desc">AI-powered skin and mental health assessment system</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Advanced AI Detection</h4>
+                            <p>Deep learning models for accurate analysis</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Dual Assessment</h4>
+                            <p>Combines dermatological & psychological evaluation</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="feature-text">
+                            <h4>Real-time Results</h4>
+                            <p>Instant analysis with detailed reports</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div> Logging in...';
+        });
+
+        window.addEventListener('load', function() {
+            const form = document.getElementById('loginForm');
+            form.reset();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Log In';
+        });
+    </script>
+</body>
+</html>
