@@ -10,9 +10,9 @@ Before running the project, download the trained model files from Google Drive a
 
 | File | Download Link |
 |------|--------------|
-| `best_model.keras` | [Download Here](PASTE_GOOGLE_DRIVE_LINK_1_HERE) |
-| `best_model_finetuned.keras` | [Download Here](PASTE_GOOGLE_DRIVE_LINK_2_HERE) |
-| `Demo.mp4` | [Download Here](PASTE_GOOGLE_DRIVE_LINK_3_HERE) |
+| `best_model.keras` | [Download Here]([PASTE_GOOGLE_DRIVE_LINK_1_HERE](https://drive.google.com/file/d/1pur50Rj-QEucTfeZ_ax_N34DzYfCIB_k/view?usp=sharing )) |
+| `best_model_finetuned.keras` | [Download Here]([PASTE_GOOGLE_DRIVE_LINK_2_HERE](https://drive.google.com/file/d/1sP2s9w1iCTkzTKRCZQeNBeZnIlYMwsV7/view?usp=sharing  )) |
+| `Demo.mp4` | [Download Here]([PASTE_GOOGLE_DRIVE_LINK_3_HERE](https://drive.google.com/file/d/1M_v3ZYTOReD0bGMAy-XOqu78_yGVayQd/view?usp=sharing)) |
 
 > Place `best_model.keras` and `best_model_finetuned.keras` inside the `models/` folder.
 
