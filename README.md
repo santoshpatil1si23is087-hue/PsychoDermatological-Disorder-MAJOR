@@ -47,4 +47,4 @@ Computer Vision · Machine Learning · Natural Language Processing · Full-Stack
 
 ---
 
-*Major Project — BE Computer Science Engineering*
+*Major Project — BE Information Science and Engineering*
